@@ -1,8 +1,6 @@
-module yumiko_kawaii.rpc.com
+module github.com/YumikoKawaii/rpc.com
 
 go 1.24.0
-
-toolchain go1.24.8
 
 require (
 	github.com/envoyproxy/protoc-gen-validate v1.2.1
