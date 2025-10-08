@@ -79,6 +79,7 @@ type EntryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Data          int32                  `protobuf:"varint,3,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -127,6 +128,13 @@ func (x *EntryResponse) GetMessage() string {
 	return ""
 }
 
+func (x *EntryResponse) GetData() int32 {
+	if x != nil {
+		return x.Data
+	}
+	return 0
+}
+
 var File_proto_orchestrator_orchestrator_proto protoreflect.FileDescriptor
 
 const file_proto_orchestrator_orchestrator_proto_rawDesc = "" +
@@ -134,10 +142,11 @@ const file_proto_orchestrator_orchestrator_proto_rawDesc = "" +
 	"%proto/orchestrator/orchestrator.proto\x12\x10orchestrator.api\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\"b\n" +
 	"\fEntryRequest\x12'\n" +
 	"\x0fcurrent_session\x18\x01 \x01(\tR\x0ecurrentSession\x12)\n" +
-	"\x10previous_session\x18\x02 \x01(\tR\x0fpreviousSession\"=\n" +
+	"\x10previous_session\x18\x02 \x01(\tR\x0fpreviousSession\"Q\n" +
 	"\rEntryResponse\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2r\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x12\n" +
+	"\x04data\x18\x03 \x01(\x05R\x04data2r\n" +
 	"\fOrchestrator\x12b\n" +
 	"\x05Entry\x12\x1e.orchestrator.api.EntryRequest\x1a\x1f.orchestrator.api.EntryResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/api/v1/entryB:Z8yumiko_kawaii.com/yine/applications/orchestrator/api;apib\x06proto3"
 

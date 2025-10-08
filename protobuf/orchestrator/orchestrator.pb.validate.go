@@ -164,6 +164,8 @@ func (m *EntryResponse) validate(all bool) error {
 
 	// no validation rules for Message
 
+	// no validation rules for Data
+
 	if len(errors) > 0 {
 		return EntryResponseMultiError(errors)
 	}
