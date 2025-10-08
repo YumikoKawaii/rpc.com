@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: proto/orchestrator/orchestrator.proto
 
-package orchestrator
+package api
 
 import (
 	context "context"

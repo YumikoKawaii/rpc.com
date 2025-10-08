@@ -4,11 +4,11 @@
 // 	protoc        (unknown)
 // source: proto/orchestrator/orchestrator.proto
 
-package orchestrator
+package api
 
 import (
-	_ "github.com/YumikoKawaii/rpc.com/google/api"
-	_ "github.com/YumikoKawaii/rpc.com/validate"
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -139,8 +139,7 @@ const file_proto_orchestrator_orchestrator_proto_rawDesc = "" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2r\n" +
 	"\fOrchestrator\x12b\n" +
-	"\x05Entry\x12\x1e.orchestrator.api.EntryRequest\x1a\x1f.orchestrator.api.EntryResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/api/v1/entryB\xbe\x01\n" +
-	"\x14com.orchestrator.apiB\x11OrchestratorProtoP\x01Z2github.com/YumikoKawaii/rpc.com/proto/orchestrator\xa2\x02\x03OAX\xaa\x02\x10Orchestrator.Api\xca\x02\x10Orchestrator\\Api\xe2\x02\x1cOrchestrator\\Api\\GPBMetadata\xea\x02\x11Orchestrator::Apib\x06proto3"
+	"\x05Entry\x12\x1e.orchestrator.api.EntryRequest\x1a\x1f.orchestrator.api.EntryResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/api/v1/entryB:Z8yumiko_kawaii.com/yine/applications/orchestrator/api;apib\x06proto3"
 
 var (
 	file_proto_orchestrator_orchestrator_proto_rawDescOnce sync.Once

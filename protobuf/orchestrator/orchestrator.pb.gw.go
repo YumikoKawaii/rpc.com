@@ -2,11 +2,11 @@
 // source: proto/orchestrator/orchestrator.proto
 
 /*
-Package orchestrator is a reverse proxy.
+Package api is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package orchestrator
+package api
 
 import (
 	"context"
