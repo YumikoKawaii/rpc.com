@@ -92,6 +92,8 @@ func (m *SendMessageRequest) validate(all bool) error {
 
 	// no validation rules for Type
 
+	// no validation rules for ConversationId
+
 	if len(errors) > 0 {
 		return SendMessageRequestMultiError(errors)
 	}
