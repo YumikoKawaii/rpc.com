@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Orchestrator_Entry_FullMethodName = "/orchestrator.api.Orchestrator/Entry"
+	Orchestrator_SendMessage_FullMethodName     = "/orchestrator.api.Orchestrator/SendMessage"
+	Orchestrator_ReceiveMessages_FullMethodName = "/orchestrator.api.Orchestrator/ReceiveMessages"
 )
 
 // OrchestratorClient is the client API for Orchestrator service.
@@ -28,7 +29,10 @@ const (
 //
 // Orchestrator ...
 type OrchestratorClient interface {
-	Entry(ctx context.Context, in *EntryRequest, opts ...grpc.CallOption) (*EntryResponse, error)
+	// SendMessage - Client sends a message (unary RPC)
+	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
+	// ReceiveMessages - Client receives real-time messages (server streaming)
+	ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Message], error)
 }
 
 type orchestratorClient struct {
@@ -39,15 +43,34 @@ func NewOrchestratorClient(cc grpc.ClientConnInterface) OrchestratorClient {
 	return &orchestratorClient{cc}
 }
 
-func (c *orchestratorClient) Entry(ctx context.Context, in *EntryRequest, opts ...grpc.CallOption) (*EntryResponse, error) {
+func (c *orchestratorClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EntryResponse)
-	err := c.cc.Invoke(ctx, Orchestrator_Entry_FullMethodName, in, out, cOpts...)
+	out := new(SendMessageResponse)
+	err := c.cc.Invoke(ctx, Orchestrator_SendMessage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
+
+func (c *orchestratorClient) ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Message], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Orchestrator_ServiceDesc.Streams[0], Orchestrator_ReceiveMessages_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ReceiveMessagesRequest, Message]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Orchestrator_ReceiveMessagesClient = grpc.ServerStreamingClient[Message]
 
 // OrchestratorServer is the server API for Orchestrator service.
 // All implementations must embed UnimplementedOrchestratorServer
@@ -55,7 +78,10 @@ func (c *orchestratorClient) Entry(ctx context.Context, in *EntryRequest, opts .
 //
 // Orchestrator ...
 type OrchestratorServer interface {
-	Entry(context.Context, *EntryRequest) (*EntryResponse, error)
+	// SendMessage - Client sends a message (unary RPC)
+	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
+	// ReceiveMessages - Client receives real-time messages (server streaming)
+	ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[Message]) error
 	mustEmbedUnimplementedOrchestratorServer()
 }
 
@@ -66,8 +92,11 @@ type OrchestratorServer interface {
 // pointer dereference when methods are called.
 type UnimplementedOrchestratorServer struct{}
 
-func (UnimplementedOrchestratorServer) Entry(context.Context, *EntryRequest) (*EntryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Entry not implemented")
+func (UnimplementedOrchestratorServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessage not implemented")
+}
+func (UnimplementedOrchestratorServer) ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[Message]) error {
+	return status.Errorf(codes.Unimplemented, "method ReceiveMessages not implemented")
 }
 func (UnimplementedOrchestratorServer) mustEmbedUnimplementedOrchestratorServer() {}
 func (UnimplementedOrchestratorServer) testEmbeddedByValue()                      {}
@@ -90,23 +119,34 @@ func RegisterOrchestratorServer(s grpc.ServiceRegistrar, srv OrchestratorServer)
 	s.RegisterService(&Orchestrator_ServiceDesc, srv)
 }
 
-func _Orchestrator_Entry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EntryRequest)
+func _Orchestrator_SendMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendMessageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrchestratorServer).Entry(ctx, in)
+		return srv.(OrchestratorServer).SendMessage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Orchestrator_Entry_FullMethodName,
+		FullMethod: Orchestrator_SendMessage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrchestratorServer).Entry(ctx, req.(*EntryRequest))
+		return srv.(OrchestratorServer).SendMessage(ctx, req.(*SendMessageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _Orchestrator_ReceiveMessages_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ReceiveMessagesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(OrchestratorServer).ReceiveMessages(m, &grpc.GenericServerStream[ReceiveMessagesRequest, Message]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Orchestrator_ReceiveMessagesServer = grpc.ServerStreamingServer[Message]
 
 // Orchestrator_ServiceDesc is the grpc.ServiceDesc for Orchestrator service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -116,10 +156,16 @@ var Orchestrator_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*OrchestratorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Entry",
-			Handler:    _Orchestrator_Entry_Handler,
+			MethodName: "SendMessage",
+			Handler:    _Orchestrator_SendMessage_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ReceiveMessages",
+			Handler:       _Orchestrator_ReceiveMessages_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "proto/orchestrator/orchestrator.proto",
 }
