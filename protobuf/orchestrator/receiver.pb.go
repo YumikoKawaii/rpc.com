@@ -11,7 +11,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	prototypes "orchestrator/prototypes"
+	api "orchestrator/prototypes/api"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -30,7 +30,7 @@ type SendMessageRequest struct {
 	FromUserId     string                 `protobuf:"bytes,1,opt,name=from_user_id,json=fromUserId,proto3" json:"from_user_id,omitempty"`
 	ToUserId       string                 `protobuf:"bytes,2,opt,name=to_user_id,json=toUserId,proto3" json:"to_user_id,omitempty"`
 	Content        string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	Type           prototypes.MessageType `protobuf:"varint,4,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
+	Type           api.MessageType        `protobuf:"varint,4,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
 	ConversationId string                 `protobuf:"bytes,5,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"` // optional, for group chats
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -87,11 +87,11 @@ func (x *SendMessageRequest) GetContent() string {
 	return ""
 }
 
-func (x *SendMessageRequest) GetType() prototypes.MessageType {
+func (x *SendMessageRequest) GetType() api.MessageType {
 	if x != nil {
 		return x.Type
 	}
-	return prototypes.MessageType(0)
+	return api.MessageType(0)
 }
 
 func (x *SendMessageRequest) GetConversationId() string {
@@ -162,10 +162,10 @@ func (x *SendMessageResponse) GetData() *MessageData {
 }
 
 type MessageData struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	MessageId     string                   `protobuf:"bytes,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	Timestamp     int64                    `protobuf:"varint,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Status        prototypes.MessageStatus `protobuf:"varint,3,opt,name=status,proto3,enum=orchestrator.MessageStatus" json:"status,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MessageId     string                 `protobuf:"bytes,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
+	Timestamp     int64                  `protobuf:"varint,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Status        api.MessageStatus      `protobuf:"varint,3,opt,name=status,proto3,enum=orchestrator.MessageStatus" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,11 +214,11 @@ func (x *MessageData) GetTimestamp() int64 {
 	return 0
 }
 
-func (x *MessageData) GetStatus() prototypes.MessageStatus {
+func (x *MessageData) GetStatus() api.MessageStatus {
 	if x != nil {
 		return x.Status
 	}
-	return prototypes.MessageStatus(0)
+	return api.MessageStatus(0)
 }
 
 var File_proto_orchestrator_receiver_proto protoreflect.FileDescriptor
@@ -260,11 +260,11 @@ func file_proto_orchestrator_receiver_proto_rawDescGZIP() []byte {
 
 var file_proto_orchestrator_receiver_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_orchestrator_receiver_proto_goTypes = []any{
-	(*SendMessageRequest)(nil),    // 0: orchestrator.SendMessageRequest
-	(*SendMessageResponse)(nil),   // 1: orchestrator.SendMessageResponse
-	(*MessageData)(nil),           // 2: orchestrator.MessageData
-	(prototypes.MessageType)(0),   // 3: orchestrator.MessageType
-	(prototypes.MessageStatus)(0), // 4: orchestrator.MessageStatus
+	(*SendMessageRequest)(nil),  // 0: orchestrator.SendMessageRequest
+	(*SendMessageResponse)(nil), // 1: orchestrator.SendMessageResponse
+	(*MessageData)(nil),         // 2: orchestrator.MessageData
+	(api.MessageType)(0),        // 3: orchestrator.MessageType
+	(api.MessageStatus)(0),      // 4: orchestrator.MessageStatus
 }
 var file_proto_orchestrator_receiver_proto_depIdxs = []int32{
 	3, // 0: orchestrator.SendMessageRequest.type:type_name -> orchestrator.MessageType

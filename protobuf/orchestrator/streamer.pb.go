@@ -11,7 +11,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	prototypes "orchestrator/prototypes"
+	api "orchestrator/prototypes/api"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -103,7 +103,7 @@ func file_proto_orchestrator_streamer_proto_rawDescGZIP() []byte {
 var file_proto_orchestrator_streamer_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_proto_orchestrator_streamer_proto_goTypes = []any{
 	(*ReceiveMessagesRequest)(nil), // 0: orchestrator.ReceiveMessagesRequest
-	(*prototypes.Message)(nil),     // 1: orchestrator.Message
+	(*api.Message)(nil),            // 1: orchestrator.Message
 }
 var file_proto_orchestrator_streamer_proto_depIdxs = []int32{
 	0, // 0: orchestrator.Streamer.ReceiveMessages:input_type -> orchestrator.ReceiveMessagesRequest

@@ -11,7 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	prototypes "orchestrator/prototypes"
+	api "orchestrator/prototypes/api"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,7 +30,7 @@ const (
 // Streamer ...
 type StreamerClient interface {
 	// ReceiveMessages - Client receives real-time messages (server streaming)
-	ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[prototypes.Message], error)
+	ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[api.Message], error)
 }
 
 type streamerClient struct {
@@ -41,13 +41,13 @@ func NewStreamerClient(cc grpc.ClientConnInterface) StreamerClient {
 	return &streamerClient{cc}
 }
 
-func (c *streamerClient) ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[prototypes.Message], error) {
+func (c *streamerClient) ReceiveMessages(ctx context.Context, in *ReceiveMessagesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[api.Message], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Streamer_ServiceDesc.Streams[0], Streamer_ReceiveMessages_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[ReceiveMessagesRequest, prototypes.Message]{ClientStream: stream}
+	x := &grpc.GenericClientStream[ReceiveMessagesRequest, api.Message]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *streamerClient) ReceiveMessages(ctx context.Context, in *ReceiveMessage
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Streamer_ReceiveMessagesClient = grpc.ServerStreamingClient[prototypes.Message]
+type Streamer_ReceiveMessagesClient = grpc.ServerStreamingClient[api.Message]
 
 // StreamerServer is the server API for Streamer service.
 // All implementations must embed UnimplementedStreamerServer
@@ -67,7 +67,7 @@ type Streamer_ReceiveMessagesClient = grpc.ServerStreamingClient[prototypes.Mess
 // Streamer ...
 type StreamerServer interface {
 	// ReceiveMessages - Client receives real-time messages (server streaming)
-	ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[prototypes.Message]) error
+	ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[api.Message]) error
 	mustEmbedUnimplementedStreamerServer()
 }
 
@@ -78,7 +78,7 @@ type StreamerServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStreamerServer struct{}
 
-func (UnimplementedStreamerServer) ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[prototypes.Message]) error {
+func (UnimplementedStreamerServer) ReceiveMessages(*ReceiveMessagesRequest, grpc.ServerStreamingServer[api.Message]) error {
 	return status.Errorf(codes.Unimplemented, "method ReceiveMessages not implemented")
 }
 func (UnimplementedStreamerServer) mustEmbedUnimplementedStreamerServer() {}
@@ -107,11 +107,11 @@ func _Streamer_ReceiveMessages_Handler(srv interface{}, stream grpc.ServerStream
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StreamerServer).ReceiveMessages(m, &grpc.GenericServerStream[ReceiveMessagesRequest, prototypes.Message]{ServerStream: stream})
+	return srv.(StreamerServer).ReceiveMessages(m, &grpc.GenericServerStream[ReceiveMessagesRequest, api.Message]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Streamer_ReceiveMessagesServer = grpc.ServerStreamingServer[prototypes.Message]
+type Streamer_ReceiveMessagesServer = grpc.ServerStreamingServer[api.Message]
 
 // Streamer_ServiceDesc is the grpc.ServiceDesc for Streamer service.
 // It's only intended for direct use with grpc.RegisterService,
