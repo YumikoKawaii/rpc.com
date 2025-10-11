@@ -244,7 +244,7 @@ const file_proto_orchestrator_receiver_proto_rawDesc = "" +
 	"\ttimestamp\x18\x02 \x01(\x03R\ttimestamp\x123\n" +
 	"\x06status\x18\x03 \x01(\x0e2\x1b.orchestrator.MessageStatusR\x06status2{\n" +
 	"\bReceiver\x12o\n" +
-	"\vSendMessage\x12 .orchestrator.SendMessageRequest\x1a!.orchestrator.SendMessageResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/messagesB\x1bZ\x19orchestrator/receiver/apib\x06proto3"
+	"\vSendMessage\x12 .orchestrator.SendMessageRequest\x1a!.orchestrator.SendMessageResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/messagesB\x1fZ\x1dorchestrator/receiver/api;apib\x06proto3"
 
 var (
 	file_proto_orchestrator_receiver_proto_rawDescOnce sync.Once
