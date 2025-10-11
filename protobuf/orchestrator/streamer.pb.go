@@ -11,7 +11,6 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	api "orchestrator/prototypes/api"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -86,7 +85,7 @@ const file_proto_orchestrator_streamer_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x12#\n" +
 	"\rsession_token\x18\x02 \x01(\tR\fsessionToken2\\\n" +
 	"\bStreamer\x12P\n" +
-	"\x0fReceiveMessages\x12$.orchestrator.ReceiveMessagesRequest\x1a\x15.orchestrator.Message0\x01B\x1fZ\x1dorchestrator/streamer/api;apib\x06proto3"
+	"\x0fReceiveMessages\x12$.orchestrator.ReceiveMessagesRequest\x1a\x15.orchestrator.Message0\x01B\x16Z\x14orchestrator/api;apib\x06proto3"
 
 var (
 	file_proto_orchestrator_streamer_proto_rawDescOnce sync.Once
@@ -103,7 +102,7 @@ func file_proto_orchestrator_streamer_proto_rawDescGZIP() []byte {
 var file_proto_orchestrator_streamer_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_proto_orchestrator_streamer_proto_goTypes = []any{
 	(*ReceiveMessagesRequest)(nil), // 0: orchestrator.ReceiveMessagesRequest
-	(*api.Message)(nil),            // 1: orchestrator.Message
+	(*Message)(nil),                // 1: orchestrator.Message
 }
 var file_proto_orchestrator_streamer_proto_depIdxs = []int32{
 	0, // 0: orchestrator.Streamer.ReceiveMessages:input_type -> orchestrator.ReceiveMessagesRequest
@@ -120,6 +119,7 @@ func file_proto_orchestrator_streamer_proto_init() {
 	if File_proto_orchestrator_streamer_proto != nil {
 		return
 	}
+	file_proto_orchestrator_prototypes_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

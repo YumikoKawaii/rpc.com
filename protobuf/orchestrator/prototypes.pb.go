@@ -264,7 +264,7 @@ const file_proto_orchestrator_prototypes_proto_rawDesc = "" +
 	"\tDELIVERED\x10\x01\x12\b\n" +
 	"\x04READ\x10\x02\x12\n" +
 	"\n" +
-	"\x06FAILED\x10\x03B!Z\x1forchestrator/prototypes/api;apib\x06proto3"
+	"\x06FAILED\x10\x03B\x16Z\x14orchestrator/api;apib\x06proto3"
 
 var (
 	file_proto_orchestrator_prototypes_proto_rawDescOnce sync.Once
