@@ -57,9 +57,9 @@ func (m *SendMessageRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetFromUserId()) < 1 {
+	if utf8.RuneCountInString(m.GetSender()) < 1 {
 		err := SendMessageRequestValidationError{
-			field:  "FromUserId",
+			field:  "Sender",
 			reason: "value length must be at least 1 runes",
 		}
 		if !all {
@@ -68,9 +68,9 @@ func (m *SendMessageRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if utf8.RuneCountInString(m.GetToUserId()) < 1 {
+	if utf8.RuneCountInString(m.GetConversationId()) < 1 {
 		err := SendMessageRequestValidationError{
-			field:  "ToUserId",
+			field:  "ConversationId",
 			reason: "value length must be at least 1 runes",
 		}
 		if !all {
@@ -91,8 +91,6 @@ func (m *SendMessageRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Type
-
-	// no validation rules for ConversationId
 
 	if len(errors) > 0 {
 		return SendMessageRequestMultiError(errors)

@@ -26,11 +26,10 @@ const (
 // SendMessage request
 type SendMessageRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	FromUserId     string                 `protobuf:"bytes,1,opt,name=from_user_id,json=fromUserId,proto3" json:"from_user_id,omitempty"`
-	ToUserId       string                 `protobuf:"bytes,2,opt,name=to_user_id,json=toUserId,proto3" json:"to_user_id,omitempty"`
+	Sender         string                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
+	ConversationId string                 `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	Content        string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	Type           MessageType            `protobuf:"varint,4,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
-	ConversationId string                 `protobuf:"bytes,5,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"` // optional, for group chats
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -65,16 +64,16 @@ func (*SendMessageRequest) Descriptor() ([]byte, []int) {
 	return file_proto_orchestrator_receiver_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SendMessageRequest) GetFromUserId() string {
+func (x *SendMessageRequest) GetSender() string {
 	if x != nil {
-		return x.FromUserId
+		return x.Sender
 	}
 	return ""
 }
 
-func (x *SendMessageRequest) GetToUserId() string {
+func (x *SendMessageRequest) GetConversationId() string {
 	if x != nil {
-		return x.ToUserId
+		return x.ConversationId
 	}
 	return ""
 }
@@ -91,13 +90,6 @@ func (x *SendMessageRequest) GetType() MessageType {
 		return x.Type
 	}
 	return MessageType_TEXT
-}
-
-func (x *SendMessageRequest) GetConversationId() string {
-	if x != nil {
-		return x.ConversationId
-	}
-	return ""
 }
 
 type SendMessageResponse struct {
@@ -224,15 +216,12 @@ var File_proto_orchestrator_receiver_proto protoreflect.FileDescriptor
 
 const file_proto_orchestrator_receiver_proto_rawDesc = "" +
 	"\n" +
-	"!proto/orchestrator/receiver.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"\xe1\x01\n" +
-	"\x12SendMessageRequest\x12)\n" +
-	"\ffrom_user_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\n" +
-	"fromUserId\x12%\n" +
-	"\n" +
-	"to_user_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\btoUserId\x12!\n" +
+	"!proto/orchestrator/receiver.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"\xb9\x01\n" +
+	"\x12SendMessageRequest\x12\x1f\n" +
+	"\x06sender\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06sender\x120\n" +
+	"\x0fconversation_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x0econversationId\x12!\n" +
 	"\acontent\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\acontent\x12-\n" +
-	"\x04type\x18\x04 \x01(\x0e2\x19.orchestrator.MessageTypeR\x04type\x12'\n" +
-	"\x0fconversation_id\x18\x05 \x01(\tR\x0econversationId\"r\n" +
+	"\x04type\x18\x04 \x01(\x0e2\x19.orchestrator.MessageTypeR\x04type\"r\n" +
 	"\x13SendMessageResponse\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12-\n" +
