@@ -25,11 +25,10 @@ const (
 
 // ReceiveMessages request
 type ReceiveMessagesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SessionToken  string                 `protobuf:"bytes,2,opt,name=session_token,json=sessionToken,proto3" json:"session_token,omitempty"` // for authentication
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	UserIdentification string                 `protobuf:"bytes,1,opt,name=user_identification,json=userIdentification,proto3" json:"user_identification,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *ReceiveMessagesRequest) Reset() {
@@ -62,16 +61,9 @@ func (*ReceiveMessagesRequest) Descriptor() ([]byte, []int) {
 	return file_proto_orchestrator_streamer_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ReceiveMessagesRequest) GetUserId() string {
+func (x *ReceiveMessagesRequest) GetUserIdentification() string {
 	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *ReceiveMessagesRequest) GetSessionToken() string {
-	if x != nil {
-		return x.SessionToken
+		return x.UserIdentification
 	}
 	return ""
 }
@@ -80,10 +72,9 @@ var File_proto_orchestrator_streamer_proto protoreflect.FileDescriptor
 
 const file_proto_orchestrator_streamer_proto_rawDesc = "" +
 	"\n" +
-	"!proto/orchestrator/streamer.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"_\n" +
-	"\x16ReceiveMessagesRequest\x12 \n" +
-	"\auser_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06userId\x12#\n" +
-	"\rsession_token\x18\x02 \x01(\tR\fsessionToken2\\\n" +
+	"!proto/orchestrator/streamer.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"R\n" +
+	"\x16ReceiveMessagesRequest\x128\n" +
+	"\x13user_identification\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x12userIdentification2\\\n" +
 	"\bStreamer\x12P\n" +
 	"\x0fReceiveMessages\x12$.orchestrator.ReceiveMessagesRequest\x1a\x15.orchestrator.Message0\x01B\x16Z\x14orchestrator/api;apib\x06proto3"
 

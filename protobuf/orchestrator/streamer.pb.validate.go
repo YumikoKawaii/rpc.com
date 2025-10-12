@@ -57,9 +57,9 @@ func (m *ReceiveMessagesRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetUserId()) < 1 {
+	if utf8.RuneCountInString(m.GetUserIdentification()) < 1 {
 		err := ReceiveMessagesRequestValidationError{
-			field:  "UserId",
+			field:  "UserIdentification",
 			reason: "value length must be at least 1 runes",
 		}
 		if !all {
@@ -67,8 +67,6 @@ func (m *ReceiveMessagesRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for SessionToken
 
 	if len(errors) > 0 {
 		return ReceiveMessagesRequestMultiError(errors)
