@@ -139,7 +139,7 @@ type Message struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	MessageId      string                 `protobuf:"bytes,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
 	Sender         string                 `protobuf:"bytes,2,opt,name=sender,proto3" json:"sender,omitempty"`
-	ConversationId string                 `protobuf:"bytes,3,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	ConversationId int64                  `protobuf:"varint,3,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	Content        string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
 	Type           MessageType            `protobuf:"varint,5,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
 	Timestamp      int64                  `protobuf:"varint,6,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
@@ -192,11 +192,11 @@ func (x *Message) GetSender() string {
 	return ""
 }
 
-func (x *Message) GetConversationId() string {
+func (x *Message) GetConversationId() int64 {
 	if x != nil {
 		return x.ConversationId
 	}
-	return ""
+	return 0
 }
 
 func (x *Message) GetContent() string {
@@ -236,7 +236,7 @@ const file_proto_orchestrator_prototypes_proto_rawDesc = "" +
 	"\n" +
 	"message_id\x18\x01 \x01(\tR\tmessageId\x12\x16\n" +
 	"\x06sender\x18\x02 \x01(\tR\x06sender\x12'\n" +
-	"\x0fconversation_id\x18\x03 \x01(\tR\x0econversationId\x12\x18\n" +
+	"\x0fconversation_id\x18\x03 \x01(\x03R\x0econversationId\x12\x18\n" +
 	"\acontent\x18\x04 \x01(\tR\acontent\x12-\n" +
 	"\x04type\x18\x05 \x01(\x0e2\x19.orchestrator.MessageTypeR\x04type\x12\x1c\n" +
 	"\ttimestamp\x18\x06 \x01(\x03R\ttimestamp\x123\n" +
