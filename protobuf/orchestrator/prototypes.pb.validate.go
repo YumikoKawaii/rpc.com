@@ -58,9 +58,9 @@ func (m *Message) validate(all bool) error {
 
 	// no validation rules for MessageId
 
-	// no validation rules for FromUserId
+	// no validation rules for Sender
 
-	// no validation rules for ToUserId
+	// no validation rules for ConversationId
 
 	// no validation rules for Content
 
@@ -69,8 +69,6 @@ func (m *Message) validate(all bool) error {
 	// no validation rules for Timestamp
 
 	// no validation rules for Status
-
-	// no validation rules for ConversationId
 
 	if len(errors) > 0 {
 		return MessageMultiError(errors)

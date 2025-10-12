@@ -138,13 +138,12 @@ func (MessageStatus) EnumDescriptor() ([]byte, []int) {
 type Message struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	MessageId      string                 `protobuf:"bytes,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	FromUserId     string                 `protobuf:"bytes,2,opt,name=from_user_id,json=fromUserId,proto3" json:"from_user_id,omitempty"`
-	ToUserId       string                 `protobuf:"bytes,3,opt,name=to_user_id,json=toUserId,proto3" json:"to_user_id,omitempty"`
+	Sender         string                 `protobuf:"bytes,2,opt,name=sender,proto3" json:"sender,omitempty"`
+	ConversationId string                 `protobuf:"bytes,3,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	Content        string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
 	Type           MessageType            `protobuf:"varint,5,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
 	Timestamp      int64                  `protobuf:"varint,6,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	Status         MessageStatus          `protobuf:"varint,7,opt,name=status,proto3,enum=orchestrator.MessageStatus" json:"status,omitempty"`
-	ConversationId string                 `protobuf:"bytes,8,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"` // optional, for group chats
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -186,16 +185,16 @@ func (x *Message) GetMessageId() string {
 	return ""
 }
 
-func (x *Message) GetFromUserId() string {
+func (x *Message) GetSender() string {
 	if x != nil {
-		return x.FromUserId
+		return x.Sender
 	}
 	return ""
 }
 
-func (x *Message) GetToUserId() string {
+func (x *Message) GetConversationId() string {
 	if x != nil {
-		return x.ToUserId
+		return x.ConversationId
 	}
 	return ""
 }
@@ -228,30 +227,20 @@ func (x *Message) GetStatus() MessageStatus {
 	return MessageStatus_SENT
 }
 
-func (x *Message) GetConversationId() string {
-	if x != nil {
-		return x.ConversationId
-	}
-	return ""
-}
-
 var File_proto_orchestrator_prototypes_proto protoreflect.FileDescriptor
 
 const file_proto_orchestrator_prototypes_proto_rawDesc = "" +
 	"\n" +
-	"#proto/orchestrator/prototypes.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\"\xad\x02\n" +
+	"#proto/orchestrator/prototypes.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\"\x85\x02\n" +
 	"\aMessage\x12\x1d\n" +
 	"\n" +
-	"message_id\x18\x01 \x01(\tR\tmessageId\x12 \n" +
-	"\ffrom_user_id\x18\x02 \x01(\tR\n" +
-	"fromUserId\x12\x1c\n" +
-	"\n" +
-	"to_user_id\x18\x03 \x01(\tR\btoUserId\x12\x18\n" +
+	"message_id\x18\x01 \x01(\tR\tmessageId\x12\x16\n" +
+	"\x06sender\x18\x02 \x01(\tR\x06sender\x12'\n" +
+	"\x0fconversation_id\x18\x03 \x01(\tR\x0econversationId\x12\x18\n" +
 	"\acontent\x18\x04 \x01(\tR\acontent\x12-\n" +
 	"\x04type\x18\x05 \x01(\x0e2\x19.orchestrator.MessageTypeR\x04type\x12\x1c\n" +
 	"\ttimestamp\x18\x06 \x01(\x03R\ttimestamp\x123\n" +
-	"\x06status\x18\a \x01(\x0e2\x1b.orchestrator.MessageStatusR\x06status\x12'\n" +
-	"\x0fconversation_id\x18\b \x01(\tR\x0econversationId*P\n" +
+	"\x06status\x18\a \x01(\x0e2\x1b.orchestrator.MessageStatusR\x06status*P\n" +
 	"\vMessageType\x12\b\n" +
 	"\x04TEXT\x10\x00\x12\t\n" +
 	"\x05IMAGE\x10\x01\x12\t\n" +
