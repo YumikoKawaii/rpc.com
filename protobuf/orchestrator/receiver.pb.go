@@ -27,7 +27,7 @@ const (
 type SendMessageRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Sender         string                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
-	ConversationId string                 `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	ConversationId int64                  `protobuf:"varint,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	Content        string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	Type           MessageType            `protobuf:"varint,4,opt,name=type,proto3,enum=orchestrator.MessageType" json:"type,omitempty"`
 	unknownFields  protoimpl.UnknownFields
@@ -71,11 +71,11 @@ func (x *SendMessageRequest) GetSender() string {
 	return ""
 }
 
-func (x *SendMessageRequest) GetConversationId() string {
+func (x *SendMessageRequest) GetConversationId() int64 {
 	if x != nil {
 		return x.ConversationId
 	}
-	return ""
+	return 0
 }
 
 func (x *SendMessageRequest) GetContent() string {
@@ -216,10 +216,10 @@ var File_proto_orchestrator_receiver_proto protoreflect.FileDescriptor
 
 const file_proto_orchestrator_receiver_proto_rawDesc = "" +
 	"\n" +
-	"!proto/orchestrator/receiver.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"\xb9\x01\n" +
+	"!proto/orchestrator/receiver.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\x1a#proto/orchestrator/prototypes.proto\"\xb0\x01\n" +
 	"\x12SendMessageRequest\x12\x1f\n" +
-	"\x06sender\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06sender\x120\n" +
-	"\x0fconversation_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x0econversationId\x12!\n" +
+	"\x06sender\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\x06sender\x12'\n" +
+	"\x0fconversation_id\x18\x02 \x01(\x03R\x0econversationId\x12!\n" +
 	"\acontent\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\acontent\x12-\n" +
 	"\x04type\x18\x04 \x01(\x0e2\x19.orchestrator.MessageTypeR\x04type\"r\n" +
 	"\x13SendMessageResponse\x12\x12\n" +

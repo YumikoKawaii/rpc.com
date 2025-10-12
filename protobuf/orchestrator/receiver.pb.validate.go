@@ -68,16 +68,7 @@ func (m *SendMessageRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if utf8.RuneCountInString(m.GetConversationId()) < 1 {
-		err := SendMessageRequestValidationError{
-			field:  "ConversationId",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for ConversationId
 
 	if utf8.RuneCountInString(m.GetContent()) < 1 {
 		err := SendMessageRequestValidationError{
