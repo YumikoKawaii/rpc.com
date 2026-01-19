@@ -759,13 +759,13 @@ const file_proto_authenticator_authenticator_proto_rawDesc = "" +
 	"\x06domain\x18\x04 \x01(\tR\x06domain\x12\x17\n" +
 	"\amax_age\x18\x05 \x01(\x03R\x06maxAge\x12\x16\n" +
 	"\x06secure\x18\x06 \x01(\bR\x06secure\x12\x1b\n" +
-	"\thttp_only\x18\a \x01(\bR\bhttpOnly2\x93\x04\n" +
+	"\thttp_only\x18\a \x01(\bR\bhttpOnly2\xa0\x04\n" +
 	"\rAuthenticator\x12q\n" +
 	"\n" +
 	"InitSignUp\x12 .authenticator.InitSignUpRequest\x1a!.authenticator.InitSignUpResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/signup/init\x12`\n" +
 	"\x06SignUp\x12\x1c.authenticator.SignUpRequest\x1a\x1d.authenticator.SignUpResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/api/v1/signup\x12\x8b\x01\n" +
-	"\x11InitFacebookLogin\x12'.authenticator.InitFacebookLoginRequest\x1a(.authenticator.InitFacebookLoginResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/login/facebook/init\x12\x9e\x01\n" +
-	"\x16HandleFacebookCallback\x12,.authenticator.HandleFacebookCallbackRequest\x1a-.authenticator.HandleFacebookCallbackResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/api/v1/login/facebook/callbackB\x17Z\x15authenticator/api;apib\x06proto3"
+	"\x11InitFacebookLogin\x12'.authenticator.InitFacebookLoginRequest\x1a(.authenticator.InitFacebookLoginResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/login/facebook/init\x12\xab\x01\n" +
+	"\x16HandleFacebookCallback\x12,.authenticator.HandleFacebookCallbackRequest\x1a-.authenticator.HandleFacebookCallbackResponse\"4\x82\xd3\xe4\x93\x02.\x12,/self-service/methods/oidc/callback/facebookB\x17Z\x15authenticator/api;apib\x06proto3"
 
 var (
 	file_proto_authenticator_authenticator_proto_rawDescOnce sync.Once

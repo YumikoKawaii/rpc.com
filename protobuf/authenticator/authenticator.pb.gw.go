@@ -217,7 +217,7 @@ func RegisterAuthenticatorHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authenticator.Authenticator/HandleFacebookCallback", runtime.WithHTTPPathPattern("/api/v1/login/facebook/callback"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/authenticator.Authenticator/HandleFacebookCallback", runtime.WithHTTPPathPattern("/self-service/methods/oidc/callback/facebook"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -326,7 +326,7 @@ func RegisterAuthenticatorHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authenticator.Authenticator/HandleFacebookCallback", runtime.WithHTTPPathPattern("/api/v1/login/facebook/callback"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/authenticator.Authenticator/HandleFacebookCallback", runtime.WithHTTPPathPattern("/self-service/methods/oidc/callback/facebook"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -346,7 +346,7 @@ var (
 	pattern_Authenticator_InitSignUp_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "signup", "init"}, ""))
 	pattern_Authenticator_SignUp_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "signup"}, ""))
 	pattern_Authenticator_InitFacebookLogin_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "login", "facebook", "init"}, ""))
-	pattern_Authenticator_HandleFacebookCallback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "login", "facebook", "callback"}, ""))
+	pattern_Authenticator_HandleFacebookCallback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"self-service", "methods", "oidc", "callback", "facebook"}, ""))
 )
 
 var (
