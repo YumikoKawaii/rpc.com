@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Authenticator_InitSignUp_FullMethodName        = "/authenticator.Authenticator/InitSignUp"
-	Authenticator_SignUp_FullMethodName            = "/authenticator.Authenticator/SignUp"
-	Authenticator_InitFacebookLogin_FullMethodName = "/authenticator.Authenticator/InitFacebookLogin"
+	Authenticator_InitSignUp_FullMethodName             = "/authenticator.Authenticator/InitSignUp"
+	Authenticator_SignUp_FullMethodName                 = "/authenticator.Authenticator/SignUp"
+	Authenticator_InitFacebookLogin_FullMethodName      = "/authenticator.Authenticator/InitFacebookLogin"
+	Authenticator_HandleFacebookCallback_FullMethodName = "/authenticator.Authenticator/HandleFacebookCallback"
 )
 
 // AuthenticatorClient is the client API for Authenticator service.
@@ -33,6 +34,7 @@ type AuthenticatorClient interface {
 	InitSignUp(ctx context.Context, in *InitSignUpRequest, opts ...grpc.CallOption) (*InitSignUpResponse, error)
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	InitFacebookLogin(ctx context.Context, in *InitFacebookLoginRequest, opts ...grpc.CallOption) (*InitFacebookLoginResponse, error)
+	HandleFacebookCallback(ctx context.Context, in *HandleFacebookCallbackRequest, opts ...grpc.CallOption) (*HandleFacebookCallbackResponse, error)
 }
 
 type authenticatorClient struct {
@@ -73,6 +75,16 @@ func (c *authenticatorClient) InitFacebookLogin(ctx context.Context, in *InitFac
 	return out, nil
 }
 
+func (c *authenticatorClient) HandleFacebookCallback(ctx context.Context, in *HandleFacebookCallbackRequest, opts ...grpc.CallOption) (*HandleFacebookCallbackResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HandleFacebookCallbackResponse)
+	err := c.cc.Invoke(ctx, Authenticator_HandleFacebookCallback_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthenticatorServer is the server API for Authenticator service.
 // All implementations must embed UnimplementedAuthenticatorServer
 // for forward compatibility.
@@ -82,6 +94,7 @@ type AuthenticatorServer interface {
 	InitSignUp(context.Context, *InitSignUpRequest) (*InitSignUpResponse, error)
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	InitFacebookLogin(context.Context, *InitFacebookLoginRequest) (*InitFacebookLoginResponse, error)
+	HandleFacebookCallback(context.Context, *HandleFacebookCallbackRequest) (*HandleFacebookCallbackResponse, error)
 	mustEmbedUnimplementedAuthenticatorServer()
 }
 
@@ -100,6 +113,9 @@ func (UnimplementedAuthenticatorServer) SignUp(context.Context, *SignUpRequest) 
 }
 func (UnimplementedAuthenticatorServer) InitFacebookLogin(context.Context, *InitFacebookLoginRequest) (*InitFacebookLoginResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method InitFacebookLogin not implemented")
+}
+func (UnimplementedAuthenticatorServer) HandleFacebookCallback(context.Context, *HandleFacebookCallbackRequest) (*HandleFacebookCallbackResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method HandleFacebookCallback not implemented")
 }
 func (UnimplementedAuthenticatorServer) mustEmbedUnimplementedAuthenticatorServer() {}
 func (UnimplementedAuthenticatorServer) testEmbeddedByValue()                       {}
@@ -176,6 +192,24 @@ func _Authenticator_InitFacebookLogin_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Authenticator_HandleFacebookCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HandleFacebookCallbackRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthenticatorServer).HandleFacebookCallback(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Authenticator_HandleFacebookCallback_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthenticatorServer).HandleFacebookCallback(ctx, req.(*HandleFacebookCallbackRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Authenticator_ServiceDesc is the grpc.ServiceDesc for Authenticator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -194,6 +228,10 @@ var Authenticator_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitFacebookLogin",
 			Handler:    _Authenticator_InitFacebookLogin_Handler,
+		},
+		{
+			MethodName: "HandleFacebookCallback",
+			Handler:    _Authenticator_HandleFacebookCallback_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

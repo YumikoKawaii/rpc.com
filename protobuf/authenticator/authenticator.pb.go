@@ -327,6 +327,250 @@ func (x *InitFacebookLoginResponse) GetData() *InitFacebookLoginResponse_Data {
 	return nil
 }
 
+type HandleFacebookCallbackRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Code             string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	State            string                 `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
+	Error            string                 `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+	ErrorDescription string                 `protobuf:"bytes,4,opt,name=error_description,json=errorDescription,proto3" json:"error_description,omitempty"`
+	ErrorReason      string                 `protobuf:"bytes,5,opt,name=error_reason,json=errorReason,proto3" json:"error_reason,omitempty"`
+	CookieHeader     string                 `protobuf:"bytes,6,opt,name=cookie_header,json=cookieHeader,proto3" json:"cookie_header,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *HandleFacebookCallbackRequest) Reset() {
+	*x = HandleFacebookCallbackRequest{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HandleFacebookCallbackRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HandleFacebookCallbackRequest) ProtoMessage() {}
+
+func (x *HandleFacebookCallbackRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HandleFacebookCallbackRequest.ProtoReflect.Descriptor instead.
+func (*HandleFacebookCallbackRequest) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *HandleFacebookCallbackRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackRequest) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackRequest) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackRequest) GetErrorDescription() string {
+	if x != nil {
+		return x.ErrorDescription
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackRequest) GetErrorReason() string {
+	if x != nil {
+		return x.ErrorReason
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackRequest) GetCookieHeader() string {
+	if x != nil {
+		return x.CookieHeader
+	}
+	return ""
+}
+
+type HandleFacebookCallbackResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Success        bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	RedirectUrl    string                 `protobuf:"bytes,2,opt,name=redirect_url,json=redirectUrl,proto3" json:"redirect_url,omitempty"`          // Where to redirect user after auth
+	SessionCookies []*Cookie              `protobuf:"bytes,3,rep,name=session_cookies,json=sessionCookies,proto3" json:"session_cookies,omitempty"` // Cookies to set in browser
+	ErrorMessage   string                 `protobuf:"bytes,4,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *HandleFacebookCallbackResponse) Reset() {
+	*x = HandleFacebookCallbackResponse{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HandleFacebookCallbackResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HandleFacebookCallbackResponse) ProtoMessage() {}
+
+func (x *HandleFacebookCallbackResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HandleFacebookCallbackResponse.ProtoReflect.Descriptor instead.
+func (*HandleFacebookCallbackResponse) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *HandleFacebookCallbackResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *HandleFacebookCallbackResponse) GetRedirectUrl() string {
+	if x != nil {
+		return x.RedirectUrl
+	}
+	return ""
+}
+
+func (x *HandleFacebookCallbackResponse) GetSessionCookies() []*Cookie {
+	if x != nil {
+		return x.SessionCookies
+	}
+	return nil
+}
+
+func (x *HandleFacebookCallbackResponse) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+type Cookie struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Path          string                 `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
+	Domain        string                 `protobuf:"bytes,4,opt,name=domain,proto3" json:"domain,omitempty"`
+	MaxAge        int64                  `protobuf:"varint,5,opt,name=max_age,json=maxAge,proto3" json:"max_age,omitempty"`
+	Secure        bool                   `protobuf:"varint,6,opt,name=secure,proto3" json:"secure,omitempty"`
+	HttpOnly      bool                   `protobuf:"varint,7,opt,name=http_only,json=httpOnly,proto3" json:"http_only,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Cookie) Reset() {
+	*x = Cookie{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Cookie) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Cookie) ProtoMessage() {}
+
+func (x *Cookie) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Cookie.ProtoReflect.Descriptor instead.
+func (*Cookie) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Cookie) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Cookie) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *Cookie) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *Cookie) GetDomain() string {
+	if x != nil {
+		return x.Domain
+	}
+	return ""
+}
+
+func (x *Cookie) GetMaxAge() int64 {
+	if x != nil {
+		return x.MaxAge
+	}
+	return 0
+}
+
+func (x *Cookie) GetSecure() bool {
+	if x != nil {
+		return x.Secure
+	}
+	return false
+}
+
+func (x *Cookie) GetHttpOnly() bool {
+	if x != nil {
+		return x.HttpOnly
+	}
+	return false
+}
+
 type InitSignUpResponse_Data struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FlowId        string                 `protobuf:"bytes,3,opt,name=flow_id,json=flowId,proto3" json:"flow_id,omitempty"`
@@ -336,7 +580,7 @@ type InitSignUpResponse_Data struct {
 
 func (x *InitSignUpResponse_Data) Reset() {
 	*x = InitSignUpResponse_Data{}
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -348,7 +592,7 @@ func (x *InitSignUpResponse_Data) String() string {
 func (*InitSignUpResponse_Data) ProtoMessage() {}
 
 func (x *InitSignUpResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +624,7 @@ type SignUpResponse_Data struct {
 
 func (x *SignUpResponse_Data) Reset() {
 	*x = SignUpResponse_Data{}
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -392,7 +636,7 @@ func (x *SignUpResponse_Data) String() string {
 func (*SignUpResponse_Data) ProtoMessage() {}
 
 func (x *SignUpResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -424,7 +668,7 @@ type InitFacebookLoginResponse_Data struct {
 
 func (x *InitFacebookLoginResponse_Data) Reset() {
 	*x = InitFacebookLoginResponse_Data{}
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -436,7 +680,7 @@ func (x *InitFacebookLoginResponse_Data) String() string {
 func (*InitFacebookLoginResponse_Data) ProtoMessage() {}
 
 func (x *InitFacebookLoginResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -486,12 +730,33 @@ const file_proto_authenticator_authenticator_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
 	"\x04data\x18\x03 \x01(\v2-.authenticator.InitFacebookLoginResponse.DataR\x04data\x1a)\n" +
 	"\x04Data\x12!\n" +
-	"\fredirect_url\x18\x01 \x01(\tR\vredirectUrl2\xf2\x02\n" +
+	"\fredirect_url\x18\x01 \x01(\tR\vredirectUrl\"\xd4\x01\n" +
+	"\x1dHandleFacebookCallbackRequest\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
+	"\x05state\x18\x02 \x01(\tR\x05state\x12\x14\n" +
+	"\x05error\x18\x03 \x01(\tR\x05error\x12+\n" +
+	"\x11error_description\x18\x04 \x01(\tR\x10errorDescription\x12!\n" +
+	"\ferror_reason\x18\x05 \x01(\tR\verrorReason\x12#\n" +
+	"\rcookie_header\x18\x06 \x01(\tR\fcookieHeader\"\xc2\x01\n" +
+	"\x1eHandleFacebookCallbackResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12!\n" +
+	"\fredirect_url\x18\x02 \x01(\tR\vredirectUrl\x12>\n" +
+	"\x0fsession_cookies\x18\x03 \x03(\v2\x15.authenticator.CookieR\x0esessionCookies\x12#\n" +
+	"\rerror_message\x18\x04 \x01(\tR\ferrorMessage\"\xac\x01\n" +
+	"\x06Cookie\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value\x12\x12\n" +
+	"\x04path\x18\x03 \x01(\tR\x04path\x12\x16\n" +
+	"\x06domain\x18\x04 \x01(\tR\x06domain\x12\x17\n" +
+	"\amax_age\x18\x05 \x01(\x03R\x06maxAge\x12\x16\n" +
+	"\x06secure\x18\x06 \x01(\bR\x06secure\x12\x1b\n" +
+	"\thttp_only\x18\a \x01(\bR\bhttpOnly2\x93\x04\n" +
 	"\rAuthenticator\x12q\n" +
 	"\n" +
 	"InitSignUp\x12 .authenticator.InitSignUpRequest\x1a!.authenticator.InitSignUpResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/signup/init\x12`\n" +
 	"\x06SignUp\x12\x1c.authenticator.SignUpRequest\x1a\x1d.authenticator.SignUpResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/api/v1/signup\x12\x8b\x01\n" +
-	"\x11InitFacebookLogin\x12'.authenticator.InitFacebookLoginRequest\x1a(.authenticator.InitFacebookLoginResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/login/facebook/initB\x17Z\x15authenticator/api;apib\x06proto3"
+	"\x11InitFacebookLogin\x12'.authenticator.InitFacebookLoginRequest\x1a(.authenticator.InitFacebookLoginResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/login/facebook/init\x12\x9e\x01\n" +
+	"\x16HandleFacebookCallback\x12,.authenticator.HandleFacebookCallbackRequest\x1a-.authenticator.HandleFacebookCallbackResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/api/v1/login/facebook/callbackB\x17Z\x15authenticator/api;apib\x06proto3"
 
 var (
 	file_proto_authenticator_authenticator_proto_rawDescOnce sync.Once
@@ -505,7 +770,7 @@ func file_proto_authenticator_authenticator_proto_rawDescGZIP() []byte {
 	return file_proto_authenticator_authenticator_proto_rawDescData
 }
 
-var file_proto_authenticator_authenticator_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_authenticator_authenticator_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_proto_authenticator_authenticator_proto_goTypes = []any{
 	(*InitSignUpRequest)(nil),              // 0: authenticator.InitSignUpRequest
 	(*InitSignUpResponse)(nil),             // 1: authenticator.InitSignUpResponse
@@ -513,24 +778,30 @@ var file_proto_authenticator_authenticator_proto_goTypes = []any{
 	(*SignUpResponse)(nil),                 // 3: authenticator.SignUpResponse
 	(*InitFacebookLoginRequest)(nil),       // 4: authenticator.InitFacebookLoginRequest
 	(*InitFacebookLoginResponse)(nil),      // 5: authenticator.InitFacebookLoginResponse
-	(*InitSignUpResponse_Data)(nil),        // 6: authenticator.InitSignUpResponse.Data
-	(*SignUpResponse_Data)(nil),            // 7: authenticator.SignUpResponse.Data
-	(*InitFacebookLoginResponse_Data)(nil), // 8: authenticator.InitFacebookLoginResponse.Data
+	(*HandleFacebookCallbackRequest)(nil),  // 6: authenticator.HandleFacebookCallbackRequest
+	(*HandleFacebookCallbackResponse)(nil), // 7: authenticator.HandleFacebookCallbackResponse
+	(*Cookie)(nil),                         // 8: authenticator.Cookie
+	(*InitSignUpResponse_Data)(nil),        // 9: authenticator.InitSignUpResponse.Data
+	(*SignUpResponse_Data)(nil),            // 10: authenticator.SignUpResponse.Data
+	(*InitFacebookLoginResponse_Data)(nil), // 11: authenticator.InitFacebookLoginResponse.Data
 }
 var file_proto_authenticator_authenticator_proto_depIdxs = []int32{
-	7, // 0: authenticator.SignUpResponse.data:type_name -> authenticator.SignUpResponse.Data
-	8, // 1: authenticator.InitFacebookLoginResponse.data:type_name -> authenticator.InitFacebookLoginResponse.Data
-	0, // 2: authenticator.Authenticator.InitSignUp:input_type -> authenticator.InitSignUpRequest
-	2, // 3: authenticator.Authenticator.SignUp:input_type -> authenticator.SignUpRequest
-	4, // 4: authenticator.Authenticator.InitFacebookLogin:input_type -> authenticator.InitFacebookLoginRequest
-	1, // 5: authenticator.Authenticator.InitSignUp:output_type -> authenticator.InitSignUpResponse
-	3, // 6: authenticator.Authenticator.SignUp:output_type -> authenticator.SignUpResponse
-	5, // 7: authenticator.Authenticator.InitFacebookLogin:output_type -> authenticator.InitFacebookLoginResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	10, // 0: authenticator.SignUpResponse.data:type_name -> authenticator.SignUpResponse.Data
+	11, // 1: authenticator.InitFacebookLoginResponse.data:type_name -> authenticator.InitFacebookLoginResponse.Data
+	8,  // 2: authenticator.HandleFacebookCallbackResponse.session_cookies:type_name -> authenticator.Cookie
+	0,  // 3: authenticator.Authenticator.InitSignUp:input_type -> authenticator.InitSignUpRequest
+	2,  // 4: authenticator.Authenticator.SignUp:input_type -> authenticator.SignUpRequest
+	4,  // 5: authenticator.Authenticator.InitFacebookLogin:input_type -> authenticator.InitFacebookLoginRequest
+	6,  // 6: authenticator.Authenticator.HandleFacebookCallback:input_type -> authenticator.HandleFacebookCallbackRequest
+	1,  // 7: authenticator.Authenticator.InitSignUp:output_type -> authenticator.InitSignUpResponse
+	3,  // 8: authenticator.Authenticator.SignUp:output_type -> authenticator.SignUpResponse
+	5,  // 9: authenticator.Authenticator.InitFacebookLogin:output_type -> authenticator.InitFacebookLoginResponse
+	7,  // 10: authenticator.Authenticator.HandleFacebookCallback:output_type -> authenticator.HandleFacebookCallbackResponse
+	7,  // [7:11] is the sub-list for method output_type
+	3,  // [3:7] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_authenticator_authenticator_proto_init() }
@@ -544,7 +815,7 @@ func file_proto_authenticator_authenticator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_authenticator_authenticator_proto_rawDesc), len(file_proto_authenticator_authenticator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
