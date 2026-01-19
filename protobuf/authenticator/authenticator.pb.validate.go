@@ -482,6 +482,243 @@ var _ interface {
 	ErrorName() string
 } = SignUpResponseValidationError{}
 
+// Validate checks the field values on InitFacebookLoginRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InitFacebookLoginRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InitFacebookLoginRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InitFacebookLoginRequestMultiError, or nil if none found.
+func (m *InitFacebookLoginRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InitFacebookLoginRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return InitFacebookLoginRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// InitFacebookLoginRequestMultiError is an error wrapping multiple validation
+// errors returned by InitFacebookLoginRequest.ValidateAll() if the designated
+// constraints aren't met.
+type InitFacebookLoginRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InitFacebookLoginRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InitFacebookLoginRequestMultiError) AllErrors() []error { return m }
+
+// InitFacebookLoginRequestValidationError is the validation error returned by
+// InitFacebookLoginRequest.Validate if the designated constraints aren't met.
+type InitFacebookLoginRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InitFacebookLoginRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InitFacebookLoginRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InitFacebookLoginRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InitFacebookLoginRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InitFacebookLoginRequestValidationError) ErrorName() string {
+	return "InitFacebookLoginRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InitFacebookLoginRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInitFacebookLoginRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InitFacebookLoginRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InitFacebookLoginRequestValidationError{}
+
+// Validate checks the field values on InitFacebookLoginResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InitFacebookLoginResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InitFacebookLoginResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InitFacebookLoginResponseMultiError, or nil if none found.
+func (m *InitFacebookLoginResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InitFacebookLoginResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Code
+
+	// no validation rules for Message
+
+	if all {
+		switch v := interface{}(m.GetData()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, InitFacebookLoginResponseValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, InitFacebookLoginResponseValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return InitFacebookLoginResponseValidationError{
+				field:  "Data",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return InitFacebookLoginResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// InitFacebookLoginResponseMultiError is an error wrapping multiple validation
+// errors returned by InitFacebookLoginResponse.ValidateAll() if the
+// designated constraints aren't met.
+type InitFacebookLoginResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InitFacebookLoginResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InitFacebookLoginResponseMultiError) AllErrors() []error { return m }
+
+// InitFacebookLoginResponseValidationError is the validation error returned by
+// InitFacebookLoginResponse.Validate if the designated constraints aren't met.
+type InitFacebookLoginResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InitFacebookLoginResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InitFacebookLoginResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InitFacebookLoginResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InitFacebookLoginResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InitFacebookLoginResponseValidationError) ErrorName() string {
+	return "InitFacebookLoginResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InitFacebookLoginResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInitFacebookLoginResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InitFacebookLoginResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InitFacebookLoginResponseValidationError{}
+
 // Validate checks the field values on InitSignUpResponse_Data with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -689,3 +926,108 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = SignUpResponse_DataValidationError{}
+
+// Validate checks the field values on InitFacebookLoginResponse_Data with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InitFacebookLoginResponse_Data) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InitFacebookLoginResponse_Data with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InitFacebookLoginResponse_DataMultiError, or nil if none found.
+func (m *InitFacebookLoginResponse_Data) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InitFacebookLoginResponse_Data) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for RedirectUrl
+
+	if len(errors) > 0 {
+		return InitFacebookLoginResponse_DataMultiError(errors)
+	}
+
+	return nil
+}
+
+// InitFacebookLoginResponse_DataMultiError is an error wrapping multiple
+// validation errors returned by InitFacebookLoginResponse_Data.ValidateAll()
+// if the designated constraints aren't met.
+type InitFacebookLoginResponse_DataMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InitFacebookLoginResponse_DataMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InitFacebookLoginResponse_DataMultiError) AllErrors() []error { return m }
+
+// InitFacebookLoginResponse_DataValidationError is the validation error
+// returned by InitFacebookLoginResponse_Data.Validate if the designated
+// constraints aren't met.
+type InitFacebookLoginResponse_DataValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InitFacebookLoginResponse_DataValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InitFacebookLoginResponse_DataValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InitFacebookLoginResponse_DataValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InitFacebookLoginResponse_DataValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InitFacebookLoginResponse_DataValidationError) ErrorName() string {
+	return "InitFacebookLoginResponse_DataValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InitFacebookLoginResponse_DataValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInitFacebookLoginResponse_Data.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InitFacebookLoginResponse_DataValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InitFacebookLoginResponse_DataValidationError{}

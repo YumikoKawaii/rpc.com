@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Authenticator_InitSignUp_FullMethodName = "/authenticator.Authenticator/InitSignUp"
-	Authenticator_SignUp_FullMethodName     = "/authenticator.Authenticator/SignUp"
+	Authenticator_InitSignUp_FullMethodName        = "/authenticator.Authenticator/InitSignUp"
+	Authenticator_SignUp_FullMethodName            = "/authenticator.Authenticator/SignUp"
+	Authenticator_InitFacebookLogin_FullMethodName = "/authenticator.Authenticator/InitFacebookLogin"
 )
 
 // AuthenticatorClient is the client API for Authenticator service.
@@ -31,6 +32,7 @@ const (
 type AuthenticatorClient interface {
 	InitSignUp(ctx context.Context, in *InitSignUpRequest, opts ...grpc.CallOption) (*InitSignUpResponse, error)
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
+	InitFacebookLogin(ctx context.Context, in *InitFacebookLoginRequest, opts ...grpc.CallOption) (*InitFacebookLoginResponse, error)
 }
 
 type authenticatorClient struct {
@@ -61,6 +63,16 @@ func (c *authenticatorClient) SignUp(ctx context.Context, in *SignUpRequest, opt
 	return out, nil
 }
 
+func (c *authenticatorClient) InitFacebookLogin(ctx context.Context, in *InitFacebookLoginRequest, opts ...grpc.CallOption) (*InitFacebookLoginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InitFacebookLoginResponse)
+	err := c.cc.Invoke(ctx, Authenticator_InitFacebookLogin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthenticatorServer is the server API for Authenticator service.
 // All implementations must embed UnimplementedAuthenticatorServer
 // for forward compatibility.
@@ -69,6 +81,7 @@ func (c *authenticatorClient) SignUp(ctx context.Context, in *SignUpRequest, opt
 type AuthenticatorServer interface {
 	InitSignUp(context.Context, *InitSignUpRequest) (*InitSignUpResponse, error)
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
+	InitFacebookLogin(context.Context, *InitFacebookLoginRequest) (*InitFacebookLoginResponse, error)
 	mustEmbedUnimplementedAuthenticatorServer()
 }
 
@@ -84,6 +97,9 @@ func (UnimplementedAuthenticatorServer) InitSignUp(context.Context, *InitSignUpR
 }
 func (UnimplementedAuthenticatorServer) SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedAuthenticatorServer) InitFacebookLogin(context.Context, *InitFacebookLoginRequest) (*InitFacebookLoginResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InitFacebookLogin not implemented")
 }
 func (UnimplementedAuthenticatorServer) mustEmbedUnimplementedAuthenticatorServer() {}
 func (UnimplementedAuthenticatorServer) testEmbeddedByValue()                       {}
@@ -142,6 +158,24 @@ func _Authenticator_SignUp_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Authenticator_InitFacebookLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitFacebookLoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthenticatorServer).InitFacebookLogin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Authenticator_InitFacebookLogin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthenticatorServer).InitFacebookLogin(ctx, req.(*InitFacebookLoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Authenticator_ServiceDesc is the grpc.ServiceDesc for Authenticator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +190,10 @@ var Authenticator_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignUp",
 			Handler:    _Authenticator_SignUp_Handler,
+		},
+		{
+			MethodName: "InitFacebookLogin",
+			Handler:    _Authenticator_InitFacebookLogin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

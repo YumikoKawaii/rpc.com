@@ -231,6 +231,102 @@ func (x *SignUpResponse) GetData() *SignUpResponse_Data {
 	return nil
 }
 
+type InitFacebookLoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitFacebookLoginRequest) Reset() {
+	*x = InitFacebookLoginRequest{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitFacebookLoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitFacebookLoginRequest) ProtoMessage() {}
+
+func (x *InitFacebookLoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitFacebookLoginRequest.ProtoReflect.Descriptor instead.
+func (*InitFacebookLoginRequest) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{4}
+}
+
+type InitFacebookLoginResponse struct {
+	state         protoimpl.MessageState          `protogen:"open.v1"`
+	Code          int32                           `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Message       string                          `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Data          *InitFacebookLoginResponse_Data `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitFacebookLoginResponse) Reset() {
+	*x = InitFacebookLoginResponse{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitFacebookLoginResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitFacebookLoginResponse) ProtoMessage() {}
+
+func (x *InitFacebookLoginResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitFacebookLoginResponse.ProtoReflect.Descriptor instead.
+func (*InitFacebookLoginResponse) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *InitFacebookLoginResponse) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *InitFacebookLoginResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *InitFacebookLoginResponse) GetData() *InitFacebookLoginResponse_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type InitSignUpResponse_Data struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FlowId        string                 `protobuf:"bytes,3,opt,name=flow_id,json=flowId,proto3" json:"flow_id,omitempty"`
@@ -240,7 +336,7 @@ type InitSignUpResponse_Data struct {
 
 func (x *InitSignUpResponse_Data) Reset() {
 	*x = InitSignUpResponse_Data{}
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[4]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -252,7 +348,7 @@ func (x *InitSignUpResponse_Data) String() string {
 func (*InitSignUpResponse_Data) ProtoMessage() {}
 
 func (x *InitSignUpResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[4]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -284,7 +380,7 @@ type SignUpResponse_Data struct {
 
 func (x *SignUpResponse_Data) Reset() {
 	*x = SignUpResponse_Data{}
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[5]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -296,7 +392,7 @@ func (x *SignUpResponse_Data) String() string {
 func (*SignUpResponse_Data) ProtoMessage() {}
 
 func (x *SignUpResponse_Data) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_authenticator_authenticator_proto_msgTypes[5]
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -315,6 +411,50 @@ func (*SignUpResponse_Data) Descriptor() ([]byte, []int) {
 func (x *SignUpResponse_Data) GetToken() string {
 	if x != nil {
 		return x.Token
+	}
+	return ""
+}
+
+type InitFacebookLoginResponse_Data struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RedirectUrl   string                 `protobuf:"bytes,1,opt,name=redirect_url,json=redirectUrl,proto3" json:"redirect_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InitFacebookLoginResponse_Data) Reset() {
+	*x = InitFacebookLoginResponse_Data{}
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InitFacebookLoginResponse_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InitFacebookLoginResponse_Data) ProtoMessage() {}
+
+func (x *InitFacebookLoginResponse_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_authenticator_authenticator_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InitFacebookLoginResponse_Data.ProtoReflect.Descriptor instead.
+func (*InitFacebookLoginResponse_Data) Descriptor() ([]byte, []int) {
+	return file_proto_authenticator_authenticator_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *InitFacebookLoginResponse_Data) GetRedirectUrl() string {
+	if x != nil {
+		return x.RedirectUrl
 	}
 	return ""
 }
@@ -339,11 +479,19 @@ const file_proto_authenticator_authenticator_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x126\n" +
 	"\x04data\x18\x03 \x01(\v2\".authenticator.SignUpResponse.DataR\x04data\x1a\x1c\n" +
 	"\x04Data\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2\xe4\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x1a\n" +
+	"\x18InitFacebookLoginRequest\"\xb7\x01\n" +
+	"\x19InitFacebookLoginResponse\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
+	"\x04data\x18\x03 \x01(\v2-.authenticator.InitFacebookLoginResponse.DataR\x04data\x1a)\n" +
+	"\x04Data\x12!\n" +
+	"\fredirect_url\x18\x01 \x01(\tR\vredirectUrl2\xf2\x02\n" +
 	"\rAuthenticator\x12q\n" +
 	"\n" +
 	"InitSignUp\x12 .authenticator.InitSignUpRequest\x1a!.authenticator.InitSignUpResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/signup/init\x12`\n" +
-	"\x06SignUp\x12\x1c.authenticator.SignUpRequest\x1a\x1d.authenticator.SignUpResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/api/v1/signupB\x17Z\x15authenticator/api;apib\x06proto3"
+	"\x06SignUp\x12\x1c.authenticator.SignUpRequest\x1a\x1d.authenticator.SignUpResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/api/v1/signup\x12\x8b\x01\n" +
+	"\x11InitFacebookLogin\x12'.authenticator.InitFacebookLoginRequest\x1a(.authenticator.InitFacebookLoginResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/v1/login/facebook/initB\x17Z\x15authenticator/api;apib\x06proto3"
 
 var (
 	file_proto_authenticator_authenticator_proto_rawDescOnce sync.Once
@@ -357,26 +505,32 @@ func file_proto_authenticator_authenticator_proto_rawDescGZIP() []byte {
 	return file_proto_authenticator_authenticator_proto_rawDescData
 }
 
-var file_proto_authenticator_authenticator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_authenticator_authenticator_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_proto_authenticator_authenticator_proto_goTypes = []any{
-	(*InitSignUpRequest)(nil),       // 0: authenticator.InitSignUpRequest
-	(*InitSignUpResponse)(nil),      // 1: authenticator.InitSignUpResponse
-	(*SignUpRequest)(nil),           // 2: authenticator.SignUpRequest
-	(*SignUpResponse)(nil),          // 3: authenticator.SignUpResponse
-	(*InitSignUpResponse_Data)(nil), // 4: authenticator.InitSignUpResponse.Data
-	(*SignUpResponse_Data)(nil),     // 5: authenticator.SignUpResponse.Data
+	(*InitSignUpRequest)(nil),              // 0: authenticator.InitSignUpRequest
+	(*InitSignUpResponse)(nil),             // 1: authenticator.InitSignUpResponse
+	(*SignUpRequest)(nil),                  // 2: authenticator.SignUpRequest
+	(*SignUpResponse)(nil),                 // 3: authenticator.SignUpResponse
+	(*InitFacebookLoginRequest)(nil),       // 4: authenticator.InitFacebookLoginRequest
+	(*InitFacebookLoginResponse)(nil),      // 5: authenticator.InitFacebookLoginResponse
+	(*InitSignUpResponse_Data)(nil),        // 6: authenticator.InitSignUpResponse.Data
+	(*SignUpResponse_Data)(nil),            // 7: authenticator.SignUpResponse.Data
+	(*InitFacebookLoginResponse_Data)(nil), // 8: authenticator.InitFacebookLoginResponse.Data
 }
 var file_proto_authenticator_authenticator_proto_depIdxs = []int32{
-	5, // 0: authenticator.SignUpResponse.data:type_name -> authenticator.SignUpResponse.Data
-	0, // 1: authenticator.Authenticator.InitSignUp:input_type -> authenticator.InitSignUpRequest
-	2, // 2: authenticator.Authenticator.SignUp:input_type -> authenticator.SignUpRequest
-	1, // 3: authenticator.Authenticator.InitSignUp:output_type -> authenticator.InitSignUpResponse
-	3, // 4: authenticator.Authenticator.SignUp:output_type -> authenticator.SignUpResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	7, // 0: authenticator.SignUpResponse.data:type_name -> authenticator.SignUpResponse.Data
+	8, // 1: authenticator.InitFacebookLoginResponse.data:type_name -> authenticator.InitFacebookLoginResponse.Data
+	0, // 2: authenticator.Authenticator.InitSignUp:input_type -> authenticator.InitSignUpRequest
+	2, // 3: authenticator.Authenticator.SignUp:input_type -> authenticator.SignUpRequest
+	4, // 4: authenticator.Authenticator.InitFacebookLogin:input_type -> authenticator.InitFacebookLoginRequest
+	1, // 5: authenticator.Authenticator.InitSignUp:output_type -> authenticator.InitSignUpResponse
+	3, // 6: authenticator.Authenticator.SignUp:output_type -> authenticator.SignUpResponse
+	5, // 7: authenticator.Authenticator.InitFacebookLogin:output_type -> authenticator.InitFacebookLoginResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_proto_authenticator_authenticator_proto_init() }
@@ -390,7 +544,7 @@ func file_proto_authenticator_authenticator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_authenticator_authenticator_proto_rawDesc), len(file_proto_authenticator_authenticator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
