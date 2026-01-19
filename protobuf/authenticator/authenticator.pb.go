@@ -662,7 +662,7 @@ func (x *SignUpResponse_Data) GetToken() string {
 type InitFacebookLoginResponse_Data struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RedirectUrl   string                 `protobuf:"bytes,1,opt,name=redirect_url,json=redirectUrl,proto3" json:"redirect_url,omitempty"`
-	Cookie        string                 `protobuf:"bytes,2,opt,name=cookie,proto3" json:"cookie,omitempty"`
+	Cookies       []string               `protobuf:"bytes,2,rep,name=cookies,proto3" json:"cookies,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -704,11 +704,11 @@ func (x *InitFacebookLoginResponse_Data) GetRedirectUrl() string {
 	return ""
 }
 
-func (x *InitFacebookLoginResponse_Data) GetCookie() string {
+func (x *InitFacebookLoginResponse_Data) GetCookies() []string {
 	if x != nil {
-		return x.Cookie
+		return x.Cookies
 	}
-	return ""
+	return nil
 }
 
 var File_proto_authenticator_authenticator_proto protoreflect.FileDescriptor
@@ -732,14 +732,14 @@ const file_proto_authenticator_authenticator_proto_rawDesc = "" +
 	"\x04data\x18\x03 \x01(\v2\".authenticator.SignUpResponse.DataR\x04data\x1a\x1c\n" +
 	"\x04Data\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"\x1a\n" +
-	"\x18InitFacebookLoginRequest\"\xcf\x01\n" +
+	"\x18InitFacebookLoginRequest\"\xd1\x01\n" +
 	"\x19InitFacebookLoginResponse\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12A\n" +
-	"\x04data\x18\x03 \x01(\v2-.authenticator.InitFacebookLoginResponse.DataR\x04data\x1aA\n" +
+	"\x04data\x18\x03 \x01(\v2-.authenticator.InitFacebookLoginResponse.DataR\x04data\x1aC\n" +
 	"\x04Data\x12!\n" +
-	"\fredirect_url\x18\x01 \x01(\tR\vredirectUrl\x12\x16\n" +
-	"\x06cookie\x18\x02 \x01(\tR\x06cookie\"\xd4\x01\n" +
+	"\fredirect_url\x18\x01 \x01(\tR\vredirectUrl\x12\x18\n" +
+	"\acookies\x18\x02 \x03(\tR\acookies\"\xd4\x01\n" +
 	"\x1dHandleFacebookCallbackRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\tR\x05state\x12\x14\n" +

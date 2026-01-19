@@ -1321,8 +1321,6 @@ func (m *InitFacebookLoginResponse_Data) validate(all bool) error {
 
 	// no validation rules for RedirectUrl
 
-	// no validation rules for Cookie
-
 	if len(errors) > 0 {
 		return InitFacebookLoginResponse_DataMultiError(errors)
 	}
