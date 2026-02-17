@@ -241,6 +241,212 @@ var _ interface {
 	ErrorName() string
 } = CapacityResponseValidationError{}
 
+// Validate checks the field values on UnregisterRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *UnregisterRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnregisterRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnregisterRequestMultiError, or nil if none found.
+func (m *UnregisterRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnregisterRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Ip
+
+	if len(errors) > 0 {
+		return UnregisterRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnregisterRequestMultiError is an error wrapping multiple validation errors
+// returned by UnregisterRequest.ValidateAll() if the designated constraints
+// aren't met.
+type UnregisterRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnregisterRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnregisterRequestMultiError) AllErrors() []error { return m }
+
+// UnregisterRequestValidationError is the validation error returned by
+// UnregisterRequest.Validate if the designated constraints aren't met.
+type UnregisterRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnregisterRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnregisterRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnregisterRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnregisterRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnregisterRequestValidationError) ErrorName() string {
+	return "UnregisterRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnregisterRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnregisterRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnregisterRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnregisterRequestValidationError{}
+
+// Validate checks the field values on UnregisterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnregisterResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnregisterResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnregisterResponseMultiError, or nil if none found.
+func (m *UnregisterResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnregisterResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return UnregisterResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnregisterResponseMultiError is an error wrapping multiple validation errors
+// returned by UnregisterResponse.ValidateAll() if the designated constraints
+// aren't met.
+type UnregisterResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnregisterResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnregisterResponseMultiError) AllErrors() []error { return m }
+
+// UnregisterResponseValidationError is the validation error returned by
+// UnregisterResponse.Validate if the designated constraints aren't met.
+type UnregisterResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnregisterResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnregisterResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnregisterResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnregisterResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnregisterResponseValidationError) ErrorName() string {
+	return "UnregisterResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnregisterResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnregisterResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnregisterResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnregisterResponseValidationError{}
+
 // Validate checks the field values on StatusRequest with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.

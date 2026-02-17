@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Limiter_Capacity_FullMethodName = "/limiter.Limiter/Capacity"
-	Limiter_Status_FullMethodName   = "/limiter.Limiter/Status"
+	Limiter_Capacity_FullMethodName   = "/limiter.Limiter/Capacity"
+	Limiter_Unregister_FullMethodName = "/limiter.Limiter/Unregister"
+	Limiter_Status_FullMethodName     = "/limiter.Limiter/Status"
 )
 
 // LimiterClient is the client API for Limiter service.
@@ -30,6 +31,7 @@ const (
 // Limiter ...
 type LimiterClient interface {
 	Capacity(ctx context.Context, in *CapacityRequest, opts ...grpc.CallOption) (*CapacityResponse, error)
+	Unregister(ctx context.Context, in *UnregisterRequest, opts ...grpc.CallOption) (*UnregisterResponse, error)
 	Status(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusResponse, error)
 }
 
@@ -45,6 +47,16 @@ func (c *limiterClient) Capacity(ctx context.Context, in *CapacityRequest, opts 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CapacityResponse)
 	err := c.cc.Invoke(ctx, Limiter_Capacity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *limiterClient) Unregister(ctx context.Context, in *UnregisterRequest, opts ...grpc.CallOption) (*UnregisterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnregisterResponse)
+	err := c.cc.Invoke(ctx, Limiter_Unregister_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,6 +80,7 @@ func (c *limiterClient) Status(ctx context.Context, in *StatusRequest, opts ...g
 // Limiter ...
 type LimiterServer interface {
 	Capacity(context.Context, *CapacityRequest) (*CapacityResponse, error)
+	Unregister(context.Context, *UnregisterRequest) (*UnregisterResponse, error)
 	Status(context.Context, *StatusRequest) (*StatusResponse, error)
 	mustEmbedUnimplementedLimiterServer()
 }
@@ -81,6 +94,9 @@ type UnimplementedLimiterServer struct{}
 
 func (UnimplementedLimiterServer) Capacity(context.Context, *CapacityRequest) (*CapacityResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Capacity not implemented")
+}
+func (UnimplementedLimiterServer) Unregister(context.Context, *UnregisterRequest) (*UnregisterResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Unregister not implemented")
 }
 func (UnimplementedLimiterServer) Status(context.Context, *StatusRequest) (*StatusResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Status not implemented")
@@ -124,6 +140,24 @@ func _Limiter_Capacity_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Limiter_Unregister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnregisterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LimiterServer).Unregister(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Limiter_Unregister_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LimiterServer).Unregister(ctx, req.(*UnregisterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Limiter_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StatusRequest)
 	if err := dec(in); err != nil {
@@ -152,6 +186,10 @@ var Limiter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Capacity",
 			Handler:    _Limiter_Capacity_Handler,
+		},
+		{
+			MethodName: "Unregister",
+			Handler:    _Limiter_Unregister_Handler,
 		},
 		{
 			MethodName: "Status",

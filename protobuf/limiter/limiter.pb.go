@@ -119,6 +119,86 @@ func (x *CapacityResponse) GetBurst() int32 {
 	return 0
 }
 
+type UnregisterRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ip            string                 `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnregisterRequest) Reset() {
+	*x = UnregisterRequest{}
+	mi := &file_proto_limiter_limiter_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnregisterRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnregisterRequest) ProtoMessage() {}
+
+func (x *UnregisterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_limiter_limiter_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnregisterRequest.ProtoReflect.Descriptor instead.
+func (*UnregisterRequest) Descriptor() ([]byte, []int) {
+	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UnregisterRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+type UnregisterResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UnregisterResponse) Reset() {
+	*x = UnregisterResponse{}
+	mi := &file_proto_limiter_limiter_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UnregisterResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnregisterResponse) ProtoMessage() {}
+
+func (x *UnregisterResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_limiter_limiter_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnregisterResponse.ProtoReflect.Descriptor instead.
+func (*UnregisterResponse) Descriptor() ([]byte, []int) {
+	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{3}
+}
+
 type StatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -127,7 +207,7 @@ type StatusRequest struct {
 
 func (x *StatusRequest) Reset() {
 	*x = StatusRequest{}
-	mi := &file_proto_limiter_limiter_proto_msgTypes[2]
+	mi := &file_proto_limiter_limiter_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +219,7 @@ func (x *StatusRequest) String() string {
 func (*StatusRequest) ProtoMessage() {}
 
 func (x *StatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_limiter_limiter_proto_msgTypes[2]
+	mi := &file_proto_limiter_limiter_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +232,7 @@ func (x *StatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusRequest.ProtoReflect.Descriptor instead.
 func (*StatusRequest) Descriptor() ([]byte, []int) {
-	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{2}
+	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{4}
 }
 
 type StatusResponse struct {
@@ -167,7 +247,7 @@ type StatusResponse struct {
 
 func (x *StatusResponse) Reset() {
 	*x = StatusResponse{}
-	mi := &file_proto_limiter_limiter_proto_msgTypes[3]
+	mi := &file_proto_limiter_limiter_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -179,7 +259,7 @@ func (x *StatusResponse) String() string {
 func (*StatusResponse) ProtoMessage() {}
 
 func (x *StatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_limiter_limiter_proto_msgTypes[3]
+	mi := &file_proto_limiter_limiter_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -192,7 +272,7 @@ func (x *StatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusResponse.ProtoReflect.Descriptor instead.
 func (*StatusResponse) Descriptor() ([]byte, []int) {
-	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{3}
+	return file_proto_limiter_limiter_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *StatusResponse) GetLeaderIp() string {
@@ -232,15 +312,20 @@ const file_proto_limiter_limiter_proto_rawDesc = "" +
 	"\x02ip\x18\x01 \x01(\tR\x02ip\":\n" +
 	"\x10CapacityResponse\x12\x10\n" +
 	"\x03rps\x18\x01 \x01(\x01R\x03rps\x12\x14\n" +
-	"\x05burst\x18\x02 \x01(\x05R\x05burst\"\x0f\n" +
+	"\x05burst\x18\x02 \x01(\x05R\x05burst\"#\n" +
+	"\x11UnregisterRequest\x12\x0e\n" +
+	"\x02ip\x18\x01 \x01(\tR\x02ip\"\x14\n" +
+	"\x12UnregisterResponse\"\x0f\n" +
 	"\rStatusRequest\"e\n" +
 	"\x0eStatusResponse\x12\x1b\n" +
 	"\tleader_ip\x18\x01 \x01(\tR\bleaderIp\x12\x0e\n" +
 	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x10\n" +
 	"\x03rps\x18\x03 \x01(\x02R\x03rps\x12\x14\n" +
-	"\x05burst\x18\x04 \x01(\x05R\x05burst2\xba\x01\n" +
+	"\x05burst\x18\x04 \x01(\x05R\x05burst2\xa0\x02\n" +
 	"\aLimiter\x12\\\n" +
-	"\bCapacity\x12\x18.limiter.CapacityRequest\x1a\x19.limiter.CapacityResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/capacity\x12Q\n" +
+	"\bCapacity\x12\x18.limiter.CapacityRequest\x1a\x19.limiter.CapacityResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/capacity\x12d\n" +
+	"\n" +
+	"Unregister\x12\x1a.limiter.UnregisterRequest\x1a\x1b.limiter.UnregisterResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/api/v1/unregister\x12Q\n" +
 	"\x06Status\x12\x16.limiter.StatusRequest\x1a\x17.limiter.StatusResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v1/statusB\x11Z\x0flimiter/api;apib\x06proto3"
 
 var (
@@ -255,20 +340,24 @@ func file_proto_limiter_limiter_proto_rawDescGZIP() []byte {
 	return file_proto_limiter_limiter_proto_rawDescData
 }
 
-var file_proto_limiter_limiter_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_proto_limiter_limiter_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_limiter_limiter_proto_goTypes = []any{
-	(*CapacityRequest)(nil),  // 0: limiter.CapacityRequest
-	(*CapacityResponse)(nil), // 1: limiter.CapacityResponse
-	(*StatusRequest)(nil),    // 2: limiter.StatusRequest
-	(*StatusResponse)(nil),   // 3: limiter.StatusResponse
+	(*CapacityRequest)(nil),    // 0: limiter.CapacityRequest
+	(*CapacityResponse)(nil),   // 1: limiter.CapacityResponse
+	(*UnregisterRequest)(nil),  // 2: limiter.UnregisterRequest
+	(*UnregisterResponse)(nil), // 3: limiter.UnregisterResponse
+	(*StatusRequest)(nil),      // 4: limiter.StatusRequest
+	(*StatusResponse)(nil),     // 5: limiter.StatusResponse
 }
 var file_proto_limiter_limiter_proto_depIdxs = []int32{
 	0, // 0: limiter.Limiter.Capacity:input_type -> limiter.CapacityRequest
-	2, // 1: limiter.Limiter.Status:input_type -> limiter.StatusRequest
-	1, // 2: limiter.Limiter.Capacity:output_type -> limiter.CapacityResponse
-	3, // 3: limiter.Limiter.Status:output_type -> limiter.StatusResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	2, // 1: limiter.Limiter.Unregister:input_type -> limiter.UnregisterRequest
+	4, // 2: limiter.Limiter.Status:input_type -> limiter.StatusRequest
+	1, // 3: limiter.Limiter.Capacity:output_type -> limiter.CapacityResponse
+	3, // 4: limiter.Limiter.Unregister:output_type -> limiter.UnregisterResponse
+	5, // 5: limiter.Limiter.Status:output_type -> limiter.StatusResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -285,7 +374,7 @@ func file_proto_limiter_limiter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_limiter_limiter_proto_rawDesc), len(file_proto_limiter_limiter_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
