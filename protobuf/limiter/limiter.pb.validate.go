@@ -369,6 +369,8 @@ func (m *StatusResponse) validate(all bool) error {
 
 	// no validation rules for Rps
 
+	// no validation rules for Burst
+
 	if len(errors) > 0 {
 		return StatusResponseMultiError(errors)
 	}

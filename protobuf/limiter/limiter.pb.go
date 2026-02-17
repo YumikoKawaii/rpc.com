@@ -160,6 +160,7 @@ type StatusResponse struct {
 	LeaderIp      string                 `protobuf:"bytes,1,opt,name=leader_ip,json=leaderIp,proto3" json:"leader_ip,omitempty"`
 	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
 	Rps           float32                `protobuf:"fixed32,3,opt,name=rps,proto3" json:"rps,omitempty"`
+	Burst         int32                  `protobuf:"varint,4,opt,name=burst,proto3" json:"burst,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -215,6 +216,13 @@ func (x *StatusResponse) GetRps() float32 {
 	return 0
 }
 
+func (x *StatusResponse) GetBurst() int32 {
+	if x != nil {
+		return x.Burst
+	}
+	return 0
+}
+
 var File_proto_limiter_limiter_proto protoreflect.FileDescriptor
 
 const file_proto_limiter_limiter_proto_rawDesc = "" +
@@ -225,11 +233,12 @@ const file_proto_limiter_limiter_proto_rawDesc = "" +
 	"\x10CapacityResponse\x12\x10\n" +
 	"\x03rps\x18\x01 \x01(\x01R\x03rps\x12\x14\n" +
 	"\x05burst\x18\x02 \x01(\x05R\x05burst\"\x0f\n" +
-	"\rStatusRequest\"O\n" +
+	"\rStatusRequest\"e\n" +
 	"\x0eStatusResponse\x12\x1b\n" +
 	"\tleader_ip\x18\x01 \x01(\tR\bleaderIp\x12\x0e\n" +
 	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x10\n" +
-	"\x03rps\x18\x03 \x01(\x02R\x03rps2\xba\x01\n" +
+	"\x03rps\x18\x03 \x01(\x02R\x03rps\x12\x14\n" +
+	"\x05burst\x18\x04 \x01(\x05R\x05burst2\xba\x01\n" +
 	"\aLimiter\x12\\\n" +
 	"\bCapacity\x12\x18.limiter.CapacityRequest\x1a\x19.limiter.CapacityResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/capacity\x12Q\n" +
 	"\x06Status\x12\x16.limiter.StatusRequest\x1a\x17.limiter.StatusResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/api/v1/statusB\x11Z\x0flimiter/api;apib\x06proto3"
